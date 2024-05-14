@@ -6,14 +6,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIController{
     private static String baseURL = "http://gguip7554.cafe24.com/";
-    static Retrofit retrofit = new Retrofit.Builder()
+    private static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    static APIService function = retrofit.create(APIService.class);
-    static Call<API[]> testCall = function.getData("test");
-
-    public static Call<API[]> getTestCall() {
-        return testCall;
+    private static APIService function = retrofit.create(APIService.class);
+//    private static Call<API[]> testCall = function.getData("kpnovel",5,3);
+    public static Call<API[]> getTestCall(String tableName, int page, int pagingUnit) {
+        return function.getData(tableName,page,pagingUnit);
     }
 }

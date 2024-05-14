@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
 
         TextView test = (TextView) findViewById(R.id.test);
 
-        Call<API[]> call = APIController.getTestCall();
+        Call<API[]> call = APIController.getTestCall("kpnovel",3, 8);
         call.enqueue(new Callback<API[]>() {
             @Override
             public void onResponse(Call<API[]> call, Response<API[]> response) {
                 API[] result = response.body();
                 for(int i = 0; i < result.length; i++){
-                    test.append(result[i].getTitle());
+                    test.append(result[i].toString());
                     Log.d("결과", "성공 : " + result[i].toString());
                 }
             }
